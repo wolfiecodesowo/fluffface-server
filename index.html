@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Fluffface · Bedrock Client</title>
-<meta name="description" content="Fluffface — a cute, safe Minecraft Bedrock client that runs as an overlay. No injection. Server-synced mods.">
+<meta name="description" content="Fluffface — a cute, safe Minecraft: Bedrock client built around AI-powered mods. An in-game AI helper, a mod menu, keystrokes, and more — running as an overlay, no injection.">
 <link rel="icon" href="assets/mascot.png">
 <style>
   :root{
@@ -40,9 +40,12 @@
   .hero .cat{width:168px;height:168px;filter:drop-shadow(0 14px 40px rgba(139,0,0,.55));
     animation:bob 4s ease-in-out infinite}
   @keyframes bob{50%{transform:translateY(-10px)}}
-  .hero h1{font-size:46px;letter-spacing:.06em;margin:14px 0 6px}
+  .hero .eyebrow{color:var(--red-hi);letter-spacing:.24em;text-transform:uppercase;font-size:12px;margin:14px 0 2px}
+  .hero h1{font-size:46px;letter-spacing:.06em;margin:4px 0 6px}
   .hero h1 .fl{color:var(--red-hi)}
-  .hero .tag{color:var(--muted);max-width:560px;margin:0 auto 10px}
+  .hero .welcome{color:var(--white);font-size:17px;margin:0 auto 10px}
+  .hero .tag{color:var(--muted);max-width:580px;margin:0 auto 10px}
+  .hero .tag b{color:var(--white)}
   .paws{color:var(--red);letter-spacing:.3em;font-size:14px}
 
   .dl{display:inline-flex;flex-direction:column;align-items:center;gap:8px;margin-top:26px}
@@ -107,8 +110,10 @@
 
 <div class="hero">
   <img class="cat" src="assets/mascot.png" alt="">
+  <p class="eyebrow">the AI-powered Minecraft: Bedrock client</p>
   <h1><span class="fl">Fluff</span>face</h1>
-  <p class="tag">A cute little Minecraft: Bedrock client that lives <b>on top</b> of your game. Keystrokes, CPS, a crosshair, an AI helper, an in-game mod menu — and new mods show up by themselves.</p>
+  <p class="welcome">hi, welcome in ♡ glad you're here.</p>
+  <p class="tag">A cute little Bedrock client built around <b>AI mods</b> — ask the in-game helper anything about Minecraft without leaving your world, flip mods on from the menu, and watch new ones show up on their own. It all runs as a friendly overlay <b>on top</b> of the game. No injection, no sketchy stuff.</p>
   <p class="paws">ฅ^•ﻌ•^ฅ</p>
 
   <div class="dl">
@@ -119,10 +124,11 @@
 
 <div class="wrap">
   <div class="safe" id="safe">
+    <span class="chip"><b>AI mods built in</b> — ask mid-game</span>
     <span class="chip"><b>no injection</b> — runs as an overlay</span>
     <span class="chip"><b>server-synced mods</b></span>
     <span class="chip"><b>auto-updating</b></span>
-    <span class="chip"><b>open mod sandbox</b></span>
+    <span class="chip"><b>free &amp; beginner-friendly</b></span>
   </div>
 </div>
 
