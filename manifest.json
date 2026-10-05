@@ -1,13 +1,97 @@
 {
   "name": "Fluffface",
-  "updated": "2026-10-05T04:46:21.816Z",
+  "updated": "2026-10-05T05:07:07.771Z",
   "mods": [
+    {
+      "id": "brewing-guide",
+      "version": "1.0.0",
+      "file": "mods/brewing-guide.js",
+      "sha256": "2c0118b7f3b6d2935f5602a481bcb636c66831713350ebee3cb638bc7ffa9245",
+      "size": 1999
+    },
+    {
+      "id": "checklist",
+      "version": "1.0.0",
+      "file": "mods/checklist.js",
+      "sha256": "5d4e7d394bc22d82b0154f4aa7e1d79f5cc68e08f34dcac1f0c07d06a26af65f",
+      "size": 2578
+    },
+    {
+      "id": "coord-calc",
+      "version": "1.0.0",
+      "file": "mods/coord-calc.js",
+      "sha256": "61072d1240e85243dac3a1d1d547145774c43afb167da8824bdf599dabbb50e9",
+      "size": 2283
+    },
+    {
+      "id": "cps-test",
+      "version": "1.0.0",
+      "file": "mods/cps-test.js",
+      "sha256": "4fc0aa409b77154e367488fb2791e578cc15f9dd73754dc409dbbc8503b59723",
+      "size": 1996
+    },
+    {
+      "id": "dice",
+      "version": "1.0.0",
+      "file": "mods/dice.js",
+      "sha256": "bccc261b0a84554ca01de0aae46fdfcd940da947907ddf5b77c76a219eca17a8",
+      "size": 1832
+    },
+    {
+      "id": "enchant-guide",
+      "version": "1.0.0",
+      "file": "mods/enchant-guide.js",
+      "sha256": "b79f1535dd4c5f946a643ec65b8ea3f065bdf6f3fc9ad3c7a8be1a0af61fab9e",
+      "size": 1920
+    },
+    {
+      "id": "food-guide",
+      "version": "1.0.0",
+      "file": "mods/food-guide.js",
+      "sha256": "c3cf8000dffb2f8e9f207eaaa02b6eb116db0a93bc154a377e464aecca092f64",
+      "size": 1652
+    },
+    {
+      "id": "keybinds",
+      "version": "1.0.0",
+      "file": "mods/keybinds.js",
+      "sha256": "46adf3a413fd6e65dfad13d04ee47b2d677c7581d534c453aeb72d5cd46cdc33",
+      "size": 1317
+    },
+    {
+      "id": "mood-cat",
+      "version": "1.0.0",
+      "file": "mods/mood-cat.js",
+      "sha256": "966ee755cea74bc885f4915b313df8d2a3d8bb2f5e3c262e082824a4563383d1",
+      "size": 1463
+    },
+    {
+      "id": "pomodoro",
+      "version": "1.0.0",
+      "file": "mods/pomodoro.js",
+      "sha256": "cb63c4b5fbee349a680a8f883f409ba9874e9428a73f2e22ea9fd339334fbfa5",
+      "size": 2677
+    },
+    {
+      "id": "recipe-lookup",
+      "version": "1.0.0",
+      "file": "mods/recipe-lookup.js",
+      "sha256": "98f2e1b02a70c77ac676f4539912f1d0032ef98f904c5a5eda82ea7ce8e1c099",
+      "size": 2313
+    },
     {
       "id": "session-timer",
       "version": "1.0.0",
       "file": "mods/session-timer.js",
       "sha256": "caa1124716693f9ba43e2734fbb2c08b0a7eb5427c39068920f3d601ad075b20",
       "size": 1555
+    },
+    {
+      "id": "speedrun-timer",
+      "version": "1.0.0",
+      "file": "mods/speedrun-timer.js",
+      "sha256": "9626dcc3a18d2578f8baddf900092ef6bdffe3a294f1d43a67ae08b0e370b7e9",
+      "size": 2576
     }
   ]
 }
