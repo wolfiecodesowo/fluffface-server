@@ -1,0 +1,211 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Fluffface · Bedrock Client</title>
+<meta name="description" content="Fluffface — a cute, safe Minecraft Bedrock client that runs as an overlay. No injection. Server-synced mods.">
+<link rel="icon" href="assets/mascot.png">
+<style>
+  :root{
+    --bg:#060608; --panel:#0e0e12; --line:#26262e; --white:#f5f5f7; --muted:#9a9aa6;
+    --red:#8B0000; --red-hi:#e0303f; --metal:#C0C0C0;
+    --mono:"Cascadia Code","JetBrains Mono",Consolas,ui-monospace,monospace;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{
+    background:
+      radial-gradient(ellipse 60% 50% at 50% -10%, rgba(139,0,0,.28), transparent 60%),
+      linear-gradient(rgba(255,255,255,.02) 1px,transparent 1px) 0 0/34px 34px,
+      linear-gradient(90deg,rgba(255,255,255,.02) 1px,transparent 1px) 0 0/34px 34px,
+      var(--bg);
+    color:var(--white);font-family:var(--mono);line-height:1.6;overflow-x:hidden;
+  }
+  .scan{position:fixed;inset:0;pointer-events:none;z-index:50;
+    background:repeating-linear-gradient(0deg,rgba(255,255,255,.015) 0 1px,transparent 1px 3px)}
+  a{color:var(--red-hi);text-decoration:none}
+  .wrap{max-width:900px;margin:0 auto;padding:0 20px}
+
+  /* top bar */
+  header{display:flex;align-items:center;gap:10px;padding:18px 20px;max-width:900px;margin:0 auto}
+  header img{width:30px;height:30px}
+  header b{letter-spacing:.3em;font-weight:700}
+  header em{font-style:normal;color:var(--red-hi);font-size:11px;letter-spacing:.1em}
+  header .sp{margin-left:auto;display:flex;gap:18px;font-size:13px}
+  header .sp a{color:var(--muted)} header .sp a:hover{color:var(--white)}
+
+  /* hero */
+  .hero{text-align:center;padding:54px 20px 40px;position:relative}
+  .hero .cat{width:168px;height:168px;filter:drop-shadow(0 14px 40px rgba(139,0,0,.55));
+    animation:bob 4s ease-in-out infinite}
+  @keyframes bob{50%{transform:translateY(-10px)}}
+  .hero h1{font-size:46px;letter-spacing:.06em;margin:14px 0 6px}
+  .hero h1 .fl{color:var(--red-hi)}
+  .hero .tag{color:var(--muted);max-width:560px;margin:0 auto 10px}
+  .paws{color:var(--red);letter-spacing:.3em;font-size:14px}
+
+  .dl{display:inline-flex;flex-direction:column;align-items:center;gap:8px;margin-top:26px}
+  .btn{
+    display:inline-flex;align-items:center;gap:12px;background:var(--red);color:#fff;
+    border:1px solid var(--red-hi);padding:16px 44px;font-size:19px;font-weight:700;letter-spacing:.18em;
+    box-shadow:0 0 0 3px #000,0 0 0 4px var(--metal),0 14px 40px -10px var(--red-hi);
+    transition:transform .12s,filter .12s;cursor:pointer}
+  .btn:hover{transform:translateY(-2px);filter:brightness(1.15)}
+  .btn:active{transform:translateY(0)}
+  .btn .paw{font-size:20px}
+  .sub{color:var(--muted);font-size:12.5px}
+  .sub b{color:var(--metal);font-weight:400}
+
+  /* safe strip */
+  .safe{display:flex;flex-wrap:wrap;gap:10px;justify-content:center;margin:36px 0 10px}
+  .chip{background:var(--panel);border:1px solid var(--line);border-left:2px solid var(--red-hi);
+    padding:7px 14px;font-size:12.5px;color:var(--muted)}
+  .chip b{color:var(--white);font-weight:400}
+
+  section{padding:40px 0}
+  h2{font-size:14px;color:var(--red-hi);font-weight:400;letter-spacing:.12em;margin-bottom:18px}
+  h2::before{content:"# "}
+
+  /* steps */
+  .steps{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px}
+  .step{background:var(--panel);border:1px solid var(--line);padding:18px}
+  .step .n{display:inline-block;background:var(--red);color:#fff;width:26px;height:26px;
+    text-align:center;line-height:26px;font-weight:700;margin-bottom:10px}
+  .step h3{font-size:14px;margin-bottom:6px}
+  .step p{color:var(--muted);font-size:13px}
+  .step code{background:#000;border:1px solid var(--line);padding:1px 6px;color:var(--metal)}
+
+  /* mods grid */
+  .mods{display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:10px}
+  .mod{background:var(--panel);border:1px solid var(--line);padding:14px}
+  .mod b{display:block;margin-bottom:4px}
+  .mod span{color:var(--muted);font-size:12.5px}
+  .mod .dot{color:var(--red-hi)}
+
+  .hk{display:flex;gap:10px;align-items:center;color:var(--muted);font-size:14px;padding:4px 0}
+  kbd{font:13px var(--mono);color:#fff;background:#000;border:1px solid var(--metal);padding:1px 9px;min-width:60px;text-align:center}
+
+  footer{border-top:1px solid var(--line);padding:26px 20px;text-align:center;color:var(--muted);font-size:12.5px}
+  footer .paws{display:block;margin-top:8px}
+
+  @media(max-width:560px){.hero h1{font-size:34px}.header .sp{display:none}}
+</style>
+</head>
+<body>
+<div class="scan"></div>
+
+<header>
+  <img src="assets/mascot.png" alt="Fluffface">
+  <b>FLUFFFACE</b><em>client</em>
+  <span class="sp">
+    <a href="#install">install</a>
+    <a href="#mods">mods</a>
+    <a href="#safe">is it safe?</a>
+  </span>
+</header>
+
+<div class="hero">
+  <img class="cat" src="assets/mascot.png" alt="">
+  <h1><span class="fl">Fluff</span>face</h1>
+  <p class="tag">A cute little Minecraft: Bedrock client that lives <b>on top</b> of your game. Keystrokes, CPS, a crosshair, an AI helper, an in-game mod menu — and new mods show up by themselves.</p>
+  <p class="paws">ฅ^•ﻌ•^ฅ</p>
+
+  <div class="dl">
+    <a class="btn" id="dl" href="app/"><span class="paw">⬇</span><span>DOWNLOAD</span></a>
+    <span class="sub" id="dlsub">for Windows 10 / 11 · <b id="ver">latest</b></span>
+  </div>
+</div>
+
+<div class="wrap">
+  <div class="safe" id="safe">
+    <span class="chip"><b>no injection</b> — runs as an overlay</span>
+    <span class="chip"><b>server-synced mods</b></span>
+    <span class="chip"><b>auto-updating</b></span>
+    <span class="chip"><b>open mod sandbox</b></span>
+  </div>
+</div>
+
+<div class="wrap">
+  <section id="install">
+    <h2>install</h2>
+    <div class="steps">
+      <div class="step"><span class="n">1</span><h3>Download &amp; run</h3><p>Grab the installer above and run <code>Fluffface-Setup</code>. Windows SmartScreen may warn on an unsigned app — click <b>More info → Run anyway</b>.</p></div>
+      <div class="step"><span class="n">2</span><h3>Add your AI key</h3><p>Open Fluffface → <code>./config</code> and paste an Anthropic API key so <b>fluff.ai</b> works. It stays on your PC.</p></div>
+      <div class="step"><span class="n">3</span><h3>Windowed mode</h3><p>In Minecraft: Settings → Video → turn <b>Fullscreen off</b> (borderless looks the same) so the overlay shows.</p></div>
+      <div class="step"><span class="n">4</span><h3>Play</h3><p>Hit <b>PLAY</b>. The overlay turns on automatically. You're done ฅ</p></div>
+    </div>
+
+    <div style="margin-top:18px;background:var(--panel);border:1px solid var(--line);padding:16px">
+      <div class="hk"><kbd>Alt+Z</kbd> show / hide overlay</div>
+      <div class="hk"><kbd>Alt+X</kbd> open the mod menu &amp; ask fluff.ai</div>
+      <div class="hk"><kbd>Esc</kbd> back to the game</div>
+    </div>
+  </section>
+
+  <section id="mods">
+    <h2>what's inside</h2>
+    <div class="mods">
+      <div class="mod"><b><span class="dot">▸</span> Mod Menu</b><span>In-game ClickGUI to toggle everything</span></div>
+      <div class="mod"><b><span class="dot">▸</span> Keystrokes + CPS</b><span>WASD, space &amp; mouse with click speed</span></div>
+      <div class="mod"><b><span class="dot">▸</span> Fluff AI</b><span>Ask Bedrock questions mid-game</span></div>
+      <div class="mod"><b><span class="dot">▸</span> Crosshair</b><span>Custom cosmetic crosshair</span></div>
+      <div class="mod"><b><span class="dot">▸</span> Clock</b><span>Real-world time in the corner</span></div>
+      <div class="mod"><b><span class="dot">▸</span> Notebook</b><span>Save coords, seeds &amp; to-dos</span></div>
+      <div class="mod"><b><span class="dot">▸</span> Day Cycle Timer</b><span>Countdown to night &amp; back</span></div>
+      <div class="mod"><b><span class="dot">▸</span> Watermark</b><span>Your tag &amp; session timer</span></div>
+      <div class="mod"><b><span class="dot">▸</span> Quick Ask</b><span>One-tap AI questions</span></div>
+      <div class="mod"><b><span class="dot">▸</span> Session Timer</b><span>Playtime + break reminders</span></div>
+    </div>
+    <p style="color:var(--muted);font-size:13px;margin-top:14px">New mods get pushed from the server and show up on their own — no reinstalling.</p>
+  </section>
+
+  <section id="safe">
+    <h2>is it safe?</h2>
+    <p style="color:var(--muted);max-width:640px">
+      Yep. Fluffface draws in its own transparent window on top of Minecraft — the same idea as the Discord or Xbox overlay. It <b style="color:var(--white)">never injects into the game</b>, never reads or writes its memory, and never sends fake inputs. Mods run in a locked sandbox with no internet and no file access, so a bad mod can't hurt your PC or your account. That's the whole point: a client you can grow forever without the ban risk of injected ones.
+    </p>
+  </section>
+</div>
+
+<footer>
+  made with ฅ by John · Fluffface is not affiliated with Mojang or Microsoft
+  <span class="paws" style="color:var(--red)">ฅ^•ﻌ•^ฅ　ฅ^•ﻌ•^ฅ　ฅ^•ﻌ•^ฅ</span>
+</footer>
+
+<script>
+  // Point the download button at the current installer listed in app/latest.yml.
+  // Falls back to the app/ folder if the release isn't published yet.
+  fetch('app/latest.yml', { cache: 'no-store' })
+    .then(r => r.ok ? r.text() : Promise.reject())
+    .then(yml => {
+      const path = (yml.match(/^path:\s*(.+)$/m) || [])[1];
+      const ver  = (yml.match(/^version:\s*(.+)$/m) || [])[1];
+      if (path) {
+        const btn = document.getElementById('dl');
+        btn.href = 'app/' + path.trim();
+        btn.setAttribute('download', '');
+      }
+      if (ver) document.getElementById('ver').textContent = 'v' + ver.trim();
+    })
+    .catch(() => {
+      document.getElementById('dlsub').innerHTML = 'build not published yet · see <a href="https://github.com">repo</a>';
+    });
+
+  // trailing paw prints on move (desktop only)
+  if (matchMedia('(pointer:fine)').matches) {
+    let last = 0;
+    addEventListener('pointermove', e => {
+      const now = Date.now(); if (now - last < 90) return; last = now;
+      const p = document.createElement('div');
+      p.textContent = 'ฅ';
+      p.style.cssText = `position:fixed;left:${e.clientX}px;top:${e.clientY}px;color:#8B0000;
+        font-size:14px;pointer-events:none;z-index:40;transform:translate(-50%,-50%);transition:opacity 1s,transform 1s;opacity:.7`;
+      document.body.appendChild(p);
+      requestAnimationFrame(() => { p.style.opacity = '0'; p.style.transform = 'translate(-50%,10px)'; });
+      setTimeout(() => p.remove(), 1000);
+    });
+  }
+</script>
+</body>
+</html>

@@ -1,0 +1,13 @@
+{
+  "name": "Fluffface",
+  "updated": "2026-10-05T04:40:59.045Z",
+  "mods": [
+    {
+      "id": "session-timer",
+      "version": "1.0.0",
+      "file": "mods/session-timer.js",
+      "sha256": "caa1124716693f9ba43e2734fbb2c08b0a7eb5427c39068920f3d601ad075b20",
+      "size": 1555
+    }
+  ]
+}
