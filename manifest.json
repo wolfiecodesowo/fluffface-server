@@ -1,7 +1,14 @@
 {
   "name": "Fluffface",
-  "updated": "2026-10-05T05:07:07.771Z",
+  "updated": "2026-10-05T05:12:34.596Z",
   "mods": [
+    {
+      "id": "alarm",
+      "version": "1.0.0",
+      "file": "mods/alarm.js",
+      "sha256": "c90422b113e1f00c5d4ef4d857b6da297d64f782a73072d9aff6513eb772cc44",
+      "size": 1917
+    },
     {
       "id": "brewing-guide",
       "version": "1.0.0",
@@ -59,6 +66,13 @@
       "size": 1317
     },
     {
+      "id": "mob-guide",
+      "version": "1.0.0",
+      "file": "mods/mob-guide.js",
+      "sha256": "4d19c8cf356eb90f70a60db202ae45579257f9a60b1faa00086500a145937be7",
+      "size": 1708
+    },
+    {
       "id": "mood-cat",
       "version": "1.0.0",
       "file": "mods/mood-cat.js",
@@ -92,6 +106,13 @@
       "file": "mods/speedrun-timer.js",
       "sha256": "9626dcc3a18d2578f8baddf900092ef6bdffe3a294f1d43a67ae08b0e370b7e9",
       "size": 2576
+    },
+    {
+      "id": "xp-guide",
+      "version": "1.0.0",
+      "file": "mods/xp-guide.js",
+      "sha256": "5007a34db736aa28ff485d9fd378594ef520026f005d869392a3996e497ebaa4",
+      "size": 1702
     }
   ]
 }
